@@ -1,0 +1,32 @@
+1.	安裝XAMPP
+https://www.apachefriends.org/zh_tw/download.html 
+ 
+2.	安裝Composer
+https://getcomposer.org/download/ 
+ 
+3.	安裝Laravel
+進入Terminal輸入：
+composer global require laravel/installer
+
+4.	建立專案
+cd c:\xampp\htdocs
+composer create-project --prefer-dist laravel/laravel blog
+
+5.	設定hosts (設定站台的網址)
+Windows 版本請至 C:\Windows\System32\drivers\etc\hosts
+設定範例  127.0.0.1   blog.test
+
+6.	設定 vhosts (設定vhosts可以達到同一個伺服器架設多個網站的功能)
+Windows 版本請至C:\xampp\apache\conf\extra\httpd-vhosts.conf
+<VirtualHost  *:80>
+    DocumentRoot "C:\xampp\htdocs\blog\public"
+    ServerAdmin blog.test
+	  ServerName blog.test
+	  ErrorLog "logs/ blog.test -error.log"
+    CustomLog "logs/ blog.test -access.log" combined
+    <Directory "C:\xampp\htdocs\blog\public">
+        Options All
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
